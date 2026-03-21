@@ -2,6 +2,8 @@
 
 실시간 WebGL 기반의 에너지 컨테이너 시뮬레이션. 플라즈마를 담은 유리 큐브 안에서 65,536개의 파티클이 GPU 병렬 연산(GPGPU)으로 유체 물리를 시뮬레이션합니다.
 
+**Live Demo**: [https://square-topaz.vercel.app](https://square-topaz.vercel.app)
+
 ---
 
 ## 주요 기능
