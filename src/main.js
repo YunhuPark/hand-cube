@@ -91,11 +91,25 @@ const introState = {
     fovEnd: 65.0,
 };
 
+// ─── 손 추적 상태 HUD ───
+const _handDot  = document.getElementById('hand-status-dot');
+const _handText = document.getElementById('hand-status-text');
+function _setHandStatus(state, text) {
+    if (_handDot)  { _handDot.className  = `hand-dot hand-dot--${state}`; }
+    if (_handText) { _handText.className = `hand-status-text hand-status-text--${state}`; _handText.textContent = text; }
+}
+
 // ─── 손 추적 비동기 초기화 ───
 let handTrackingReady = false;
 initHandTracking()
-    .then(() => { handTrackingReady = true; })
-    .catch((err) => { console.warn('[Main] Hand tracking unavailable:', err.message); });
+    .then(() => {
+        handTrackingReady = true;
+        _setHandStatus('ready', 'SHOW YOUR HAND');
+    })
+    .catch((err) => {
+        console.warn('[Main] Hand tracking unavailable:', err.message);
+        _setHandStatus('error', 'WEBCAM UNAVAILABLE');
+    });
 
 // ─── 애니메이션 루프 ───
 function animate() {
@@ -141,6 +155,11 @@ function animate() {
     // ── 손 추적 업데이트 ──
     if (handTrackingReady) {
         updateHandTracking(clock.delta);
+        if (handState.detected) {
+            _setHandStatus('active', 'HAND DETECTED');
+        } else {
+            _setHandStatus('ready', 'SHOW YOUR HAND');
+        }
     }
 
     // ── 큐브 회전/스케일 적용 ──

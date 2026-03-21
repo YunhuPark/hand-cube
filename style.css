@@ -130,6 +130,68 @@ kbd {
   text-align: left;
 }
 
+/* === 손 추적 상태 표시 === */
+.ui-hand-status-row {
+  margin-top: 1px;
+  padding-left: 2px;
+}
+
+.hand-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  min-width: 52px;
+  position: relative;
+}
+
+.hand-dot::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hand-dot--loading::before {
+  background: rgba(255, 200, 60, 0.9);
+  animation: dot-pulse 1.0s ease-in-out infinite;
+}
+
+.hand-dot--ready::before {
+  background: rgba(60, 220, 120, 0.95);
+  animation: dot-pulse 2.0s ease-in-out infinite;
+}
+
+.hand-dot--active::before {
+  background: rgba(60, 220, 120, 1.0);
+  box-shadow: 0 0 6px rgba(60, 255, 120, 0.8);
+  animation: none;
+}
+
+.hand-dot--error::before {
+  background: rgba(255, 80, 80, 0.8);
+  animation: none;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1.0; }
+}
+
+.hand-status-text {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: rgba(255, 200, 100, 0.70);
+}
+
+.hand-status-text--ready  { color: rgba(80, 255, 140, 0.85); }
+.hand-status-text--active { color: rgba(80, 255, 140, 1.0);  }
+.hand-status-text--error  { color: rgba(255, 100, 100, 0.80); }
+
 /* === 하단 HUD: 테마 이름 === */
 #hud {
   position: fixed;
