@@ -139,27 +139,7 @@ export function createGlassCube(size = 2) {
 
     _fresnelMat = null; // 제거됨
 
-    // ── 8 코너 스파크: 각 꼭짓점에 초과-밝기 구체 (별 형태 bloom 트리거) ──
-    _cornerSparkMat = new THREE.MeshBasicMaterial({
-        color: new THREE.Color(1.0, 0.6, 0.15),
-        transparent: true,
-        opacity: 0.40,   // 미세한 코너 포인트만
-        blending: THREE.AdditiveBlending,
-        depthWrite: false,
-    });
-    const halfS = size / 2;
-    const cornerPositions = [
-        [-1, -1, -1], [ 1, -1, -1], [-1,  1, -1], [ 1,  1, -1],
-        [-1, -1,  1], [ 1, -1,  1], [-1,  1,  1], [ 1,  1,  1],
-    ];
-    for (const [cx, cy, cz] of cornerPositions) {
-        const spark = new THREE.Mesh(
-            new THREE.SphereGeometry(0.035, 6, 6),
-            _cornerSparkMat
-        );
-        spark.position.set(cx * halfS, cy * halfS, cz * halfS);
-        mesh.add(spark);
-    }
+    _cornerSparkMat = null;
 
     // ── 외부 엣지: 4-펄스 발광 엣지 (base brightness 높음) ──
     const edgesGeo = new THREE.EdgesGeometry(geometry);

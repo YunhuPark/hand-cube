@@ -2,8 +2,6 @@
 
 실시간 WebGL 기반의 에너지 컨테이너 시뮬레이션. 플라즈마를 담은 유리 큐브 안에서 65,536개의 파티클이 GPU 병렬 연산(GPGPU)으로 유체 물리를 시뮬레이션합니다.
 
-**Live Demo**: [GitHub Pages에 배포된 링크]
-
 ---
 
 ## 주요 기능
@@ -13,7 +11,7 @@
 - **Iridescence** — 시야각에 따라 면에서 무지갯빛 shimmer 발생
 - **Dispersion 5.0** — 엣지에서 RGB 프리즘 분산 (빛이 색별로 분리)
 - **Clearcoat 1.0** — 완전 미러 코팅, 환경광 반사
-- 4-펄스 발광 엣지 + 8 코너 스파크 (Bloom 트리거)
+- 4-펄스 발광 엣지
 - 3-레이어 내부 볼륨 에테르 (깊이감 있는 에너지 코어)
 
 ### GPGPU 파티클 (65,536개)
@@ -24,8 +22,8 @@
 - 8가지 색상 테마 (키보드 1~8)
 
 ### 인터랙션
-- **웹캠 손 추적** (MediaPipe): 손바닥 기울기 → 큐브 회전, Pinch → 크기 조절
-- **터치/드래그**: 모바일 및 데스크톱 터치 지원
+- **웹캠 손 추적** (MediaPipe): 손바닥 기울기 → 큐브 회전, Pinch(엄지+검지) → 크기 조절
+- **터치스크린**: 한 손가락 드래그 → 큐브 회전, 두 손가락 핀치 → 크기 조절 (모바일 전용)
 - **키보드 1~8**: 색상 테마 전환 (Lava / Ocean / Forest / Ghost / Plasma / Ice / Sunset / Void)
 
 ### 포스트 프로세싱
@@ -62,7 +60,7 @@ npm run dev
 npm run build
 ```
 
-웹캠 권한을 허용하면 손 추적이 자동으로 활성화됩니다. 웹캠 없이도 마우스/터치로 조작 가능합니다.
+웹캠 권한을 허용하면 손 추적이 자동으로 활성화됩니다.
 
 ---
 
@@ -70,10 +68,10 @@ npm run build
 
 | 입력 | 동작 |
 |------|------|
-| 손바닥 기울이기 | 큐브 회전 |
-| Pinch (엄지+검지) | 큐브 크기 조절 |
-| 터치 드래그 | 큐브 회전 |
-| 두 손가락 핀치 | 큐브 크기 조절 |
+| 손바닥 기울이기 (웹캠) | 큐브 회전 |
+| Pinch — 엄지+검지 (웹캠) | 큐브 크기 조절 |
+| 한 손가락 드래그 (터치스크린) | 큐브 회전 |
+| 두 손가락 핀치 (터치스크린) | 큐브 크기 조절 |
 | 키보드 `1`~`8` | 색상 테마 전환 |
 
 ---
@@ -84,12 +82,12 @@ npm run build
 src/
 ├── main.js           # 앱 오케스트레이터, 애니메이션 루프
 ├── scene.js          # Scene / Camera / Renderer / 네뷸라 배경
-├── glassCube.js      # PBR 유리 큐브 메쉬 + 엣지 + 코너 스파크
+├── glassCube.js      # PBR 유리 큐브 메쉬 + 발광 엣지
 ├── gpuCompute.js     # GPGPU 파티클 물리 (Position / Velocity FBO)
-├── particles.js      # 파티클 렌더러 (Points + Streak LineSegments)
+├── particles.js      # 파티클 렌더러 (Points)
 ├── postProcessing.js # EffectComposer 포스트 프로세싱 패스
 ├── handTracking.js   # MediaPipe 손 추적 → 회전/스케일 변환
-├── touchControls.js  # 터치/마우스 인터랙션
+├── touchControls.js  # 터치스크린 인터랙션
 └── colorTheme.js     # 8가지 색상 테마 정의
 ```
 
