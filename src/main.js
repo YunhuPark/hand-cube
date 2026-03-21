@@ -91,10 +91,13 @@ const introState = {
     fovEnd: 65.0,
 };
 
-// ─── 손 추적 상태 HUD ───
+// ─── 손 추적 상태 HUD (상태 변경 시에만 DOM 업데이트) ───
 const _handDot  = document.getElementById('hand-status-dot');
 const _handText = document.getElementById('hand-status-text');
+let _handStatusCurrent = '';
 function _setHandStatus(state, text) {
+    if (_handStatusCurrent === state) return;
+    _handStatusCurrent = state;
     if (_handDot)  { _handDot.className  = `hand-dot hand-dot--${state}`; }
     if (_handText) { _handText.className = `hand-status-text hand-status-text--${state}`; _handText.textContent = text; }
 }

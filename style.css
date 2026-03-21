@@ -133,7 +133,7 @@ kbd {
 /* === 손 추적 상태 표시 === */
 .ui-hand-status-row {
   margin-top: 1px;
-  padding-left: 2px;
+  gap: 6px;
 }
 
 .hand-dot {
