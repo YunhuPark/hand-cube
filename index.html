@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Hand Cube — WebGL Fluid Simulation</title>
+  <meta name="description" content="Real-time hand-tracking fluid particle simulation inside a 3D glass cube, powered by Three.js and MediaPipe." />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <!-- 웹캠 비디오 피드 (숨김 처리) -->
+  <video id="webcam" autoplay playsinline style="display:none;"></video>
+
+  <!-- Sci-Fi 홀로그래픽 UI 패널 -->
+  <div id="ui-guide">
+    <div class="ui-header">
+      <span class="ui-bracket">[ </span>
+      <span class="ui-title">HAND&nbsp;CUBE</span>
+      <span class="ui-bracket"> ]</span>
+    </div>
+    <div class="ui-divider"></div>
+    <ul>
+      <li>
+        <span class="ui-key-group"><kbd>1</kbd><span class="ui-sep">–</span><kbd>4</kbd></span>
+        <span class="ui-label">LAVA · OCEAN · FOREST · GHOST</span>
+      </li>
+      <li>
+        <span class="ui-key-group"><kbd>5</kbd><span class="ui-sep">–</span><kbd>8</kbd></span>
+        <span class="ui-label">PLASMA · ICE · SUNSET · VOID</span>
+      </li>
+      <li class="ui-hand-row">
+        <span class="ui-hand-icon">✋</span>
+        <span class="ui-label">WEBCAM HAND CONTROL</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 하단 HUD: 현재 테마 -->
+  <div id="hud">
+    <span id="hud-theme">LAVA</span>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

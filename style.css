@@ -1,0 +1,158 @@
+/* === Global Reset === */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Courier New', 'Consolas', monospace;
+}
+
+#canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* === Sci-Fi 홀로그래픽 UI 패널 (좌상단) === */
+#ui-guide {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  color: rgba(255, 220, 140, 0.90);
+  font-size: 11px;
+  line-height: 1.0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 180, 60, 0.30);
+  border-radius: 4px;
+  padding: 10px 14px 12px;
+  /* 상단 좌측 모서리 커팅 효과 */
+  clip-path: polygon(12px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 12px);
+}
+
+/* 헤더 */
+.ui-header {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.ui-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(255, 210, 100, 1.0);
+  text-transform: uppercase;
+}
+
+.ui-bracket {
+  color: rgba(255, 160, 40, 0.70);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* 구분선 */
+.ui-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 180, 60, 0.60),
+    rgba(255, 180, 60, 0.10)
+  );
+  margin-bottom: 8px;
+}
+
+/* 리스트 */
+#ui-guide ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#ui-guide li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 키 그룹 */
+.ui-key-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 52px;
+}
+
+.ui-sep {
+  color: rgba(255, 160, 60, 0.60);
+  font-size: 10px;
+}
+
+kbd {
+  display: inline-block;
+  background: rgba(255, 170, 50, 0.12);
+  border: 1px solid rgba(255, 170, 50, 0.45);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 10px;
+  font-family: inherit;
+  color: rgba(255, 220, 130, 1.0);
+  letter-spacing: 0.05em;
+}
+
+/* 레이블 */
+.ui-label {
+  color: rgba(255, 200, 110, 0.80);
+  letter-spacing: 0.06em;
+  font-size: 10px;
+}
+
+/* 손 아이콘 행 */
+.ui-hand-row {
+  margin-top: 2px;
+}
+
+.ui-hand-icon {
+  font-size: 11px;
+  min-width: 52px;
+  text-align: left;
+}
+
+/* === 하단 HUD: 테마 이름 === */
+#hud {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+  z-index: 10;
+}
+
+#hud-theme {
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: rgba(255, 210, 100, 0.70);
+  background: rgba(0, 0, 0, 0.40);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 180, 60, 0.22);
+  border-radius: 3px;
+  padding: 6px 18px;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
